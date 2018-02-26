@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <stdlib.h>
+/*Desenvolva uma fun��o em C que receba como entrada 2 matrizes de double, n�mero de linhas da primeira matriz, n�mero de colunas da primeira
+ matriz, n�mero de linhas da segunda matriz e n�mero de colunas da segunda matriz, e retorna o produto destas matrizes. Lembrando que s� �
+ poss�vel multiplicar 2 matrizes de o n�mero de colunas da primeira for igual ao n�mero de linhas da segunda (se n�o for, a fun��o deve retornar NULL).
+
+Fa�a um programa que possibilite ao usu�rio preencher 2 matrizes 3x3 e utilize a fun��o criada para retornar o produto.
+Mostre a matriz resultante formatada em 3 linhas e 3 colunas.
+
+*/
+
+void preencher_matrix(double *matrix);
+double multi_matrix(int rowOne, int colOne, int rowTwo, int colTwo, double matrixOne[rowOne][colOne], double matrixTwo[rowTwo][colTwo]
+                    );
+int main()
+{
+    double matrix[3][3];
+    int i,j;
+    preencher_matrix(*matrix);
+    for (i=0;i<3;i++){
+        for(j=0;j<3;i++){
+            printf("%f.1", matrix[i][j]);
+        }
+    }
+}
+
+void preencher_matrix(matrix){
+    int row,col;
+    for (row=0;row<3;row++){
+        for(col=0;col<3;col++){
+            /*printf("Insira o valor da linha %d coluna %d:",row,col)
+            scanf("%f",  matrix[row][col]);*/
+            matrix[row][col] += 1;
+        }
+    }
+}

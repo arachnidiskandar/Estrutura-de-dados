@@ -9,28 +9,48 @@ Mostre a matriz resultante formatada em 3 linhas e 3 colunas.
 
 */
 
-void preencher_matrix(double *matrix);
-double multi_matrix(int rowOne, int colOne, int rowTwo, int colTwo, double matrixOne[rowOne][colOne], double matrixTwo[rowTwo][colTwo]
+
+double mul_matrix(int rowOne, int colOne, int rowTwo, int colTwo, double matrixOne[rowOne][colOne], double matrixTwo[rowTwo][colTwo]
                     );
+#define TAMANHO 2
+
+/*https://www.geeksforgeeks.org/c-program-multiply-two-matrices/*/
 int main()
 {
-    double matrix[3][3];
+    double matrix1[TAMANHO][TAMANHO],matrix2[TAMANHO][TAMANHO];
     int i,j;
-    preencher_matrix(*matrix);
-    for (i=0;i<3;i++){
-        for(j=0;j<3;i++){
-            printf("%f.1", matrix[i][j]);
+    printf("Preencha a primeira matriz:\n");
+    for (i=0;i<TAMANHO;i++){
+        for(j=0;j<TAMANHO;i++){
+            printf("Insira o elemento da linha %d coluna %d",i+1,j+1);
+            scanf("%f", matrix1[i][j]);
         }
     }
+    printf("Preencha a segunda matriz:\n");
+    for (i=0;i<TAMANHO;i++){
+        for(j=0;j<TAMANHO;i++){
+            printf("Insira o elemento da linha %d coluna %d",i+1,j+1);
+            scanf("%f", matrix2[i][j]);
+        }
+    }
+    mult_matrix(TAMANHO,TAMANHO,TAMANHO,TAMANHO,matrix1,matrix2);
+    
+}
+double mult_matrix(int rowOne, int colOne, int rowTwo, int colTwo, double matrixOne[rowOne][colOne], double matrixTwo[rowTwo][colTwo]){
+    double matrix_resul[rowOne][colTwo],soma;
+    int i,j;
+    if (colOne == rowTwo){
+        for (k=0;k<)
+            for (i=0;i<rowOne;i++){
+                for(j=0;j<colTwo;j++){
+                    soma += matrixOne[i][j]*matrixTwo[j][i]
+                }
+                printf("%f", soma);
+                matrix_resul[i][j]
+            }
+    }
+
 }
 
-void preencher_matrix(matrix){
-    int row,col;
-    for (row=0;row<3;row++){
-        for(col=0;col<3;col++){
-            /*printf("Insira o valor da linha %d coluna %d:",row,col)
-            scanf("%f",  matrix[row][col]);*/
-            matrix[row][col] += 1;
-        }
-    }
-}
+            
+

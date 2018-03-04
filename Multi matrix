@@ -1,56 +1,65 @@
 #include <stdio.h>
 #include <stdlib.h>
-/*Desenvolva uma fun��o em C que receba como entrada 2 matrizes de double, n�mero de linhas da primeira matriz, n�mero de colunas da primeira
- matriz, n�mero de linhas da segunda matriz e n�mero de colunas da segunda matriz, e retorna o produto destas matrizes. Lembrando que s� �
- poss�vel multiplicar 2 matrizes de o n�mero de colunas da primeira for igual ao n�mero de linhas da segunda (se n�o for, a fun��o deve retornar NULL).
 
-Fa�a um programa que possibilite ao usu�rio preencher 2 matrizes 3x3 e utilize a fun��o criada para retornar o produto.
-Mostre a matriz resultante formatada em 3 linhas e 3 colunas.
+/*double mul_matrix(int rowOne, int colOne, int rowTwo, int colTwo, double matrixOne[rowOne][colOne], double matrixTwo[rowTwo][colTwo]
+                    );*/
+#define TAMANHO 3
 
-*/
-
-
-double mul_matrix(int rowOne, int colOne, int rowTwo, int colTwo, double matrixOne[rowOne][colOne], double matrixTwo[rowTwo][colTwo]
-                    );
-#define TAMANHO 2
-
-/*https://www.geeksforgeeks.org/c-program-multiply-two-matrices/*/
 int main()
 {
-    double matrix1[TAMANHO][TAMANHO],matrix2[TAMANHO][TAMANHO];
-    int i,j;
-    printf("Preencha a primeira matriz:\n");
+    double matrix1[TAMANHO][TAMANHO],matrix2[TAMANHO][TAMANHO], matrix_resul[TAMANHO][TAMANHO],soma;
+    int i,j,k;
+    //printf("Preencha a primeira matriz:\n");
     for (i=0;i<TAMANHO;i++){
-        for(j=0;j<TAMANHO;i++){
-            printf("Insira o elemento da linha %d coluna %d",i+1,j+1);
-            scanf("%f", matrix1[i][j]);
+        for(j=0;j<TAMANHO;j++){
+            /*printf("Insira o elemento da linha %d coluna %d",i+1,j+1);
+            scanf("%f", matrix1[i][j]);*/
+            matrix1[i][j] = 1;
         }
     }
-    printf("Preencha a segunda matriz:\n");
+    //printf("Preencha a segunda matriz:\n");
     for (i=0;i<TAMANHO;i++){
-        for(j=0;j<TAMANHO;i++){
-            printf("Insira o elemento da linha %d coluna %d",i+1,j+1);
-            scanf("%f", matrix2[i][j]);
+        for(j=0;j<TAMANHO;j++){
+            /*printf("Insira o elemento da linha %d coluna %d",i+1,j+1);
+            scanf("%f", matrix2[i][j]);*/
+            matrix2[i][j] = 1;
+
         }
     }
-    mult_matrix(TAMANHO,TAMANHO,TAMANHO,TAMANHO,matrix1,matrix2);
-    
+        for (i=0;i<TAMANHO;i++){
+           for (j=0;j<TAMANHO;j++){
+                for(k=0;k<TAMANHO;k++){
+                    soma += matrix1[j][k]*matrix2[k][j];
+                }
+                matrix_resul[i][j]= soma;
+           }
+        }
+        for (i=0;i<TAMANHO;i++){
+            for (j=0;j<TAMANHO;j++){
+                printf("%.0f ",matrix_resul[i][j]);
+            }
+            printf("\n");
+        }
 }
-double mult_matrix(int rowOne, int colOne, int rowTwo, int colTwo, double matrixOne[rowOne][colOne], double matrixTwo[rowTwo][colTwo]){
-    double matrix_resul[rowOne][colTwo],soma;
-    int i,j;
+/*double mult_matrix(int rowOne, int colOne, int rowTwo, int colTwo, double matrixOne[TAMANHO][TAMANHO], double matrixTwo[TAMANHO][TAMANHO]){
+    double matrix_resul[TAMANHO][TAMANHO],soma;
+    int i,j,k;
     if (colOne == rowTwo){
-        for (k=0;k<)
-            for (i=0;i<rowOne;i++){
-                for(j=0;j<colTwo;j++){
-                    soma += matrixOne[i][j]*matrixTwo[j][i]
+        for (i=0;i<rowOne;i++){
+           for (j=0;j<rowOne;j++){
+                for(k=0;k<colTwo;k++){
+                    soma += matrixOne[j][k]*matrixTwo[k][j];
                 }
                 printf("%f", soma);
-                matrix_resul[i][j]
+                matrix_resul[i][j]= soma;
+                printf("\n");
             }
+        }
+        return matrix_resul;
     }
-
+    else{
+        printf("Não é possível realizar a multiplicação");
+    }
 }
-
-            
+    */
 

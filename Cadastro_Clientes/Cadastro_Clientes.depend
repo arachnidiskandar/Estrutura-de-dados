@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1520619508 source:c:\users\augst\documents\programação\c\cadastro_clientes\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+

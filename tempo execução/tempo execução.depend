@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1520727094 source:c:\users\augst\documents\programação\c\tempo execução\main.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<math.h>
+

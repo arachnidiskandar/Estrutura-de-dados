@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1520863510 source:c:\users\aluno\desktop\tempo execução ordenamento\main.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+

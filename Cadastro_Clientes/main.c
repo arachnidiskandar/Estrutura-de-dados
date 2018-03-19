@@ -1,13 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#define MAX 2
 typedef     struct {
-                char *nome;
+                char nome[30];
                 char sexo;
                 int idade;
-                char *data_nascimento;
-                char *doencas;
+                char data_nascimento[10];
+                char doencas[100];
     }cliente;
 
 cliente cadastrar_cliente();
@@ -15,18 +14,19 @@ void buscar_cliente();
 void listar_cliente();
 void excluir_cliente();
 int total_cliente = 0;
-cliente lista_clientes[MAX];
+cliente *lista_clientes;
 
 int main()
-{
+{   lista_clientes = (cliente*)calloc(0,sizeof(cliente));
     int opcao, executar = 1;
     while(executar == 1){
-        printf("selecione uma opção:\n "
+        printf("\nselecione uma opÃ§Ã£o:\n "
                    "1-Cadastrar cliente.\t2-Buscar Cliente\n3-listar todos os clientes\t"
-                   "4-Excluir um cliente\n5-Sair.");
+                   "4-Excluir um cliente\n5-Sair.\n");
         scanf("%d",&opcao);
         switch (opcao){
             case 1:
+                lista_clientes = (cliente*)realloc(lista_clientes,total_cliente+1);
                 lista_clientes[total_cliente] = cadastrar_cliente();
                 break;
             case 2:
@@ -45,30 +45,28 @@ int main()
     }
 }
 cliente cadastrar_cliente(){
-    if (total_cliente>= MAX){
-        printf("Maxima capacidade de cadastros atingido.");
-    }
-    else{
-      cliente dados;
-        dados.nome = "Augusto";
-        dados.idade = 15;
-        dados.doencas = "cancer";
-        dados.sexo = "M";
-        dados.data_nascimento = "09/11/1998";
-        /*printf("Insira o nome:");
-        scanf("%s",&dados.nome);
-        printf("Data de nascimento:");
-        scanf("%s",&dados.data_nascimento);
-        dados.doencas = "Cancer";
-        printf("Idade:");
-        scanf("%d",dados.idade);
-        printf("Sexo:")
-        scanf("%c",dados.sexo);
-        total_cliente += 1;*/
-        total_cliente += 1;
-        return dados;
-
-    }
+    total_cliente++;
+    cliente dados;
+    char nome[30];
+    char sexo;
+    int idade;
+    char data[10];
+    char doencas[100];
+    printf("Insira o nome:");
+    nome[30] = fgets(nome, sizeof(nome), stdin);
+    strcpy(dados.nome, nome);
+    fflush(stdin);
+    printf("Data de nascimento:");
+    scanf("%s",&data);
+    strcpy(dados.data_nascimento,data);
+    printf("Idade:");
+    scanf("%d",&dados.idade);
+    printf("Sexo:");
+    scanf("%s",&dados.sexo);
+    printf("DoenÃ§as:");
+    scanf("%s",&doencas);
+    strcpy(dados.doencas,doencas);
+    return dados;
 }
 void buscar_cliente(){
     char nome_buscado[30];
@@ -82,10 +80,10 @@ void buscar_cliente(){
             printf("Idade: %d\n", lista_clientes[i].idade);
             printf("Sexo: %c\n", lista_clientes[i].sexo);
             printf("Data de Nascimento: %s\n", lista_clientes[i].data_nascimento);
-            printf("Doenças: %s\n", lista_clientes[i].doencas);
+            printf("DoenÃ§as: %s\n", lista_clientes[i].doencas);
         }
         else{
-            printf("Cliente não encontrado.");
+            printf("Cliente nÃ£o encontrado.");
         }
     }
 }
@@ -93,15 +91,15 @@ void listar_cliente(){
     int i;
     if (total_cliente > 0){
         for (i=0;i<total_cliente;i++){
-            printf("Nome: %s\n", lista_clientes[i].nome);
+            printf("\nNome: %s\n", lista_clientes[i].nome);
             printf("Idade: %d\n", lista_clientes[i].idade);
             printf("Sexo: %c\n", lista_clientes[i].sexo);
             printf("Data de Nascimento: %s\n", lista_clientes[i].data_nascimento);
-            printf("Doenças: %s\n", lista_clientes[i].doencas);
+            printf("DoenÃ§as: %s\n", lista_clientes[i].doencas);
         }
     }
     else{
-        printf("Não há clientes cadastrados ainda.");
+        printf("NÃ£o hÃ¡ clientes cadastrados ainda.");
     }
 }
 void excluir_cliente(){
@@ -115,11 +113,13 @@ void excluir_cliente(){
             posicao = i;
         }
         else{
-            printf("Cliente não encontrado.");
-        }
-    for (i=0;i<total_cliente-posicao;i++){
-        lista_clientes[posicao]=lista_clientes[posicao+1];
+            printf("Cliente nÃ£o encontrado.");
+            return;
         }
     }
+    for (i=0;i<total_cliente-posicao;i++){
+        lista_clientes[posicao+i]=lista_clientes[posicao+1+i];
+    }
+    total_cliente--;
+    lista_clientes = (cliente*)realloc(lista_clientes,total_cliente*sizeof(cliente));
 }
-

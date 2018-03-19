@@ -24,6 +24,7 @@ int main()
                    "1-Cadastrar cliente.\t2-Buscar Cliente\n3-listar todos os clientes\t"
                    "4-Excluir um cliente\n5-Sair.\n");
         scanf("%d",&opcao);
+        fflush(stdin);
         switch (opcao){
             case 1:
                 lista_clientes = (cliente*)realloc(lista_clientes,total_cliente+1);
@@ -53,26 +54,35 @@ cliente cadastrar_cliente(){
     char data[10];
     char doencas[100];
     printf("Insira o nome:");
-    nome[30] = fgets(nome, sizeof(nome), stdin);
+    fgets(nome, sizeof(nome), stdin);
+    nome[strcspn(nome, "\n")] = 0;
     strcpy(dados.nome, nome);
     fflush(stdin);
     printf("Data de nascimento:");
-    scanf("%s",&data);
+    fgets(data, sizeof(data), stdin);
+    data[strcspn(data, "\n")] = 0;
     strcpy(dados.data_nascimento,data);
+    fflush(stdin);
     printf("Idade:");
     scanf("%d",&dados.idade);
+    fflush(stdin);
     printf("Sexo:");
-    scanf("%s",&dados.sexo);
+    dados.sexo = getchar();
+    fflush(stdin);
     printf("Doenças:");
     scanf("%s",&doencas);
+    fgets(data, sizeof(data), stdin);
+    data[strcspn(data, "\n")] = 0;
     strcpy(dados.doencas,doencas);
+    fflush(stdin);
     return dados;
 }
 void buscar_cliente(){
     char nome_buscado[30];
     int i;
     printf("Nome do cliente:");
-    scanf("%s",&nome_buscado);
+    fgets(nome_buscado, sizeof(nome_buscado), stdin);
+    nome_buscado[strcspn(nome_buscado, "\n")] = 0;
     for (i=0;i<total_cliente;i++){
         if (strcmp(lista_clientes[i].nome, nome_buscado) == 0){
             printf("Cliente encontrado.\n\n");
@@ -106,8 +116,9 @@ void excluir_cliente(){
     char nome_buscado[30];
     int i,posicao;
     printf("Nome do cliente:");
-    scanf("%s",&nome_buscado);
-
+    fgets(nome_buscado, sizeof(nome_buscado), stdin);
+    nome_buscado[strcspn(nome_buscado, "\n")] = 0;
+    fflush(stdin);
     for (i=0;i<total_cliente;i++){
         if (strcmp(lista_clientes[i].nome, nome_buscado) == 0){
             posicao = i;
